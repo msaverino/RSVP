@@ -1,34 +1,34 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Attending from './Components/Attending/Attending'
+import Decline from './Components/Decline/Decline'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showYesPopup, setYesPopup] = useState(false);
+  const [showDeclinePopup, setDeclinePopup] = useState(false);
+
+  const toggleYesPopup = () => {
+    setYesPopup(!showYesPopup);
+  }
+
+  const toggleNoPopup = () => {
+    setDeclinePopup(!showDeclinePopup);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div>
+      Some image here
+      <h1>John Doe's 1st Birthday Party</h1>
+      <p>When: Thursday, July 18th, 2024
+        <br></br>Time: 1 PM
+      <br></br>Where: My House</p>
+      <p>Will you be attending?</p>
+      <button onClick={toggleYesPopup} className="Accept">Yes</button>
+      <button onClick={toggleNoPopup} className="Decline">No</button>
+
+      {showYesPopup && <Attending togglePopup={toggleYesPopup} />}
+      {showDeclinePopup && <Decline togglePopup={toggleNoPopup} />}
+    </div>
   )
 }
 
